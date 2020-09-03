@@ -1,0 +1,24 @@
+{
+  "params":
+  {
+    "local_server":"True",
+    "local_uri": "mysql://root:@127.0.0.1/roboticak",
+    "prod_uri":"'mysql://root:@127.0.0.1/roboticak'",
+    "fb_url":"https://facebook.com/roboticak",
+    "tw_url":"https://twitter.com/roboticak",
+    "gh_url": "https://github.com/roboticak",
+    "youtube_url": "http://Youtube.com/roboticak",
+    "blog_name": "The Robotics AK",
+    "tag_line": "Heaven for robotics and electronics",
+    "gmail-user":"kadamabhi049@gmail.com",
+    "gmail-password":"8806973642",
+    "about_text": "Hi my name is Abhishek and I create programming websiteand I am a good boy",
+    "no_of_posts":3,
+    "login_image": "login.svg",
+    "admin_user":"abhi" ,
+    "admin_password": "abhishek",
+    "upload_location":"D:\\flask.txt\\static"
+
+  }
+}
+

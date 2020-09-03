@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{ params['blog_name'] }}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/clean-blog.min.css') }}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="/">{{ params['blog_name'] }}</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+         
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+{% block body %} {% endblock %}
+ <header class="masthead" style="background-image: url('{{ url_for('static', filename='OIP.jpg') }}')">
+  <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h6>Follow Us</h6>
+              <p>Let us be social</p>
+            <ul class="social-icons">
+              <li><a href="{{params['fb_url']}}" target="=_blank">Facebook</a></li>   <!--target='' manje url madhe blank page open hoto-->
+              <li><a href="{{params['tw_url']}}" target="=_blank">Twitter</a></li>
+              <li><a href="{{params['gh_url']}}" target="=_blank">Gethub</a></li>
+              <li><a href="{{params['youtube_url']}}" target="=_blank">Youtube</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-12">
+            <div class="copyright-text">
+              <p>Robotics AK.
+                    
+                 | Design: <a rel="nofollow" href="https://RoboticsAk.com" target="_parent">Robo</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="'{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Additional Scripts -->
+    <script src="'{{ url_for('static', filename='js/custom.js')}}"></script>
+    <script src="'{{ url_for('static', filename='js/owl.js') }}"></script>
+    <script src="'{{ url_for('static', filename='js/slick.js')}}"></script>
+    <script src="'{{ url_for('static', filename='js/isotope.js')}}"></script>
+    <script src="'{{ url_for('static', filename='js/accordions.js')}}"></script>
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+  </body>
+</html>
+
