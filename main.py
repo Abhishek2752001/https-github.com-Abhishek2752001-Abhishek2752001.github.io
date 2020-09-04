@@ -1,6 +1,6 @@
 
 from flask import Flask, render_template, request,session,redirect
-from flask_sqlalchemy import SQLAlchemy   # ha module aplyla database la connect karnysathi madat karto
+from flask_sqlalchemy import SQLAlchemy   
 from werkzeug.utils import secure_filename
 from flask_mail import Mail
 import json
@@ -9,8 +9,8 @@ import os
 import math
 
 
-with open('config.json', 'r') as c:    #file read karun atomatic close hote
-    params = json.load(c)["params"]     # syntex for acsess the file that is json file
+with open('config.json', 'r') as c:   
+    params = json.load(c)["params"]    
 
 local_server = True    #server navacha variable baanvala
 app = Flask(__name__)
@@ -21,9 +21,9 @@ app.secret_key = 'super-secret-key'
 that is called as smtp error manje google apyla permission nahi det"""
 app.config.update(
     MAIL_SERVER = 'smtp.gmail.com',
-    MAIL_PORT = '465',   #gmail; cha defalt paramerter ahe
-    MAIL_USE_SSL = True,  # kya ham ssl use karyacha ahe ka
-    MAIL_USERNAME = params['gmail-user'],  # ham parms se sername access karge
+    MAIL_PORT = '465',  
+    MAIL_USE_SSL = True, 
+    MAIL_USERNAME = params['gmail-user'], 
     MAIL_PASSWORD=  params['gmail-password']
 )
 mail = Mail(app)    
@@ -55,7 +55,7 @@ class Posts(db.Model):
 @app.route("/")
 def home():
     posts = Posts.query.filter_by().all()
-    # [0:params['no_of_posts']]  # this is because of our post no is depends upon me manje kiti post have te
+    # [0:params['no_of_posts']]  
     last=math.ceil(len(posts)/int(params['no_of_posts']))
     #pagination logic
 
@@ -84,10 +84,10 @@ def home():
     return render_template('index.html', params=params,posts=posts,prev=prev,next=next)
 
 
-@app.route("/post/<string:post_slug>",methods=['GET'])  # hycha pude 1k string jii slug asel ti write karnychi technich hi ahe
-def post_route(post_slug):   #jo ham variable dete he oh hame fuunction ke ander bhi post karna hota he niyamch ahe
-    post=Posts.query.filter_by(slug=post_slug).first()    #posts ko quary karo useke bad filter karo slug se
-    return render_template('post.html', params=params ,post=post)  #post=post matlab ham sublime se acsees kr sakte he
+@app.route("/post/<string:post_slug>",methods=['GET']) 
+def post_route(post_slug):  
+    post=Posts.query.filter_by(slug=post_slug).first()    
+    return render_template('post.html', params=params ,post=post)  
 
 @app.route("/about")
 def about():
@@ -95,18 +95,18 @@ def about():
 
 @app.route("/dashboard",methods=['GET', 'POST'])
 def dashboard():
-    if 'user' in session and session['user']==params['admin_user']: #jo user he oh session me he aur oh admin he to
+    if 'user' in session and session['user']==params['admin_user']: 
         posts = Posts.query.all()
         return render_template('dashboard.html',params=params,posts=posts )
 
     if request.method=='POST':
        ''' Rdirect to panal'''
-       username=request.form.get('uname')     #post request se paramter lekar ayega
+       username=request.form.get('uname')     
        userpass=request.form.get('pass')
        if username == params['admin_user'] and userpass == params['admin_password']:
           '''set the section variable'''
           session['user'] = username
-          posts=Posts.query.all()  #sare post aa jayege
+          posts=Posts.query.all() 
           return render_template('dashboard.html', params=params,posts=posts )
        else:
            print('password was wrong')
@@ -190,32 +190,6 @@ def contact():
 if __name__ == '__main__':
  app.run(debug=True)
 
-
-
-
-# //tline = request.form.get('tline')
-# //            slug = request.form.get('slug')
-# //            content = request.form.get('content')
-# //            img_file = request.form.get('img_file')
-# //            date = datetime.now()
-# //
-# //            if sno=='0':
-# //                post=Posts(title=box_title,slug=slug,content=content,tagline=tline,img_file=img_file,date=date)
-# //                db.session.add(post)#   we can add the post
-# //                db.session.commit()
-# //            else:
-# //                post=Posts.query.filter_by(sno=sno).first()
-# //                post.title=box_title
-# //                post.slug =slug
-# //                post.content= content
-# //                post.tagline=tline       #update karne keliye
-# //                post.img_file=img_file
-# //                post.date=date
-# //                db.session.commit()
-# //
-# //                return redirect('/edit/'+ sno)
-# //        post = Posts.query.filter_by(sno=sno).first()
-# //        return render_template('edit.html',params=params,post=post)
 
 
 
